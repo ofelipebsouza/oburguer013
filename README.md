@@ -2,6 +2,15 @@
 
 Site de apresentação do O Burguer 013, no Embaré, Santos/SP. Astro + Tailwind CSS, conteúdo em português do Brasil e versão estática para Vercel.
 
+## Links publicados
+
+- Site: https://oburguer013.vercel.app/
+- Burgers: https://oburguer013.vercel.app/cardapio/
+- Link da bio: https://oburguer013.vercel.app/links/
+- Guia visual: https://oburguer013.vercel.app/identidade/
+
+![Home publicada do O Burguer 013](docs/preview-desktop.jpg)
+
 ## Desenvolvimento
 
 Requisitos: Node.js 22.12 ou superior e npm.
@@ -38,7 +47,7 @@ Detalhes de evidências, decisões e prompts em `docs/content-notes.md`.
 
 ## Publicação
 
-Repositório: `ofelipebsouza/oburguer013`. Vercel com preset Astro, comando `npm run build` e saída `dist`. A integração Git deve construir a branch `main`.
+Repositório: `ofelipebsouza/oburguer013`. Vercel com preset Astro, comando `npm run build` e saída `dist`. A integração Git está conectada à branch `main` para publicação automática a cada push.
 
 Ao adotar domínio próprio, atualizar `site` em `astro.config.mjs`, `url` em `src/data/site.ts` e `public/robots.txt` antes de publicar.
 
