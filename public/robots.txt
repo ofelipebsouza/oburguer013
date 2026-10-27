@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://oburguer013.vercel.app/sitemap-index.xml

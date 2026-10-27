@@ -1,0 +1,29 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { whatsapp } from '../data/site';
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand-link" aria-label="O Burguer 013 — início"><Brand /></a>
+    <nav aria-label="Navegação principal" class="desktop-nav">
+      <a href="/cardapio/">Os burgers</a><a href="/#essencia">Nossa pegada</a><a href="/#encontre">Onde estamos</a>
+    </nav>
+    <div class="header-actions">
+      <a class="button button-cyan header-order" href={whatsapp()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} />Bora pedir<Icon name="northeast" size={16} /></a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><Icon name="menu" size={24} /></button>
+    </div>
+  </div>
+  <nav id="mobile-menu" aria-label="Navegação móvel" class="mobile-menu" hidden>
+    <a href="/cardapio/">Os burgers<Icon name="arrow" /></a><a href="/#essencia">Nossa pegada<Icon name="arrow" /></a><a href="/#encontre">Onde estamos<Icon name="arrow" /></a><a href={whatsapp()} target="_blank" rel="noopener noreferrer">Pedir pelo WhatsApp<Icon name="whatsapp" /></a>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#mobile-menu');
+  function closeMenu() { if (!toggle || !menu) return; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menu'); menu.hidden = true; }
+  toggle?.addEventListener('click', () => { if (!menu) return; const isOpen = toggle.getAttribute('aria-expanded') === 'true'; toggle.setAttribute('aria-expanded', String(!isOpen)); toggle.setAttribute('aria-label', isOpen ? 'Abrir menu' : 'Fechar menu'); menu.hidden = isOpen; });
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); toggle?.focus(); } });
+  window.matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
+</script>

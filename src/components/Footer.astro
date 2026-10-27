@@ -1,0 +1,13 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site, whatsapp } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top"><a href="/" aria-label="Voltar ao início"><Brand /></a><p>Da orla pra sua fome.<br /><span>O nosso código é 013.</span></p><a href={site.instagram} target="_blank" rel="noopener noreferrer" class="footer-instagram"><Icon name="instagram" />{site.handle}<Icon name="northeast" size={16} /></a></div>
+    <div class="footer-links"><nav aria-label="Links do rodapé"><a href="/cardapio/">Burgers</a><a href="/#essencia">Nossa pegada</a><a href="/#encontre">Localização</a><a href="/links/">Todos os links</a><a href="/identidade/">Identidade visual</a></nav><a href={whatsapp()} target="_blank" rel="noopener noreferrer">{site.displayPhone}</a></div>
+    <div class="footer-bottom"><span>© {new Date().getFullYear()} O Burguer 013 · Santos, SP</span><a href="/privacidade/">Privacidade</a><span>Feito com fome de criar.</span></div>
+  </div>
+</footer>
+<a class="mobile-order" href={whatsapp()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /><span>Bora pedir no WhatsApp</span><Icon name="northeast" /></a>

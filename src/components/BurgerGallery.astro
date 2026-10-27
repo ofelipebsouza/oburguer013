@@ -1,0 +1,79 @@
+---
+import Icon from './Icon.astro';
+import { menu, whatsapp } from '../data/site';
+interface Props { filters?: boolean; }
+const { filters = false } = Astro.props;
+---
+<div class="burger-gallery">
+  {filters && <div class="menu-filters" role="group" aria-label="Filtrar burgers"><button class="filter-button active" data-filter="all" aria-pressed="true">Todos os burgers</button><button class="filter-button" data-filter="carne" aria-pressed="false"><Icon name="burger" size={17} />Com carne</button><button class="filter-button" data-filter="vegetal" aria-pressed="false"><Icon name="leaf" size={17} />Na pegada vegetal</button></div>}
+  <p class="sr-only" aria-live="polite" id="filter-status"></p>
+  <div class="burger-grid">
+    {menu.map((item, i) => <article class="burger-card" data-category={item.category} data-reveal>
+      <a href={whatsapp(item.message)} target="_blank" rel="noopener noreferrer" class="burger-photo" aria-label={`Consultar ${item.name} no WhatsApp`}>
+        <img src={item.image} alt={`Imagem ilustrativa: ${item.name}`} width="720" height="720" loading="lazy" decoding="async" class:list={{ 'hero-crop': i === 0 }} />
+        <span class="photo-tag"><span></span>{item.tag}</span><span class="photo-arrow"><Icon name="northeast" size={23} /></span>
+      </a>
+      <div class="burger-copy"><span class="burger-index">0{i + 1} / {item.label}</span><h3>{item.name}</h3><p>{item.description}</p><div class="burger-actions"><button class="details-button" data-product={item.id} aria-haspopup="dialog">Ver detalhes<Icon name="plus" size={17} /></button><a href={whatsapp(item.message)} target="_blank" rel="noopener noreferrer" aria-label={`Pedir informações sobre ${item.name}`}><Icon name="whatsapp" size={19} /></a></div></div>
+    </article>)}
+  </div>
+  <p class="gallery-note">Imagens ilustrativas. Consulte ingredientes, valores e disponibilidade no WhatsApp.</p>
+  {menu.map(item => <dialog class="product-dialog" id={`product-${item.id}`} aria-labelledby={`product-title-${item.id}`}>
+    <button class="dialog-close" aria-label="Fechar detalhes"><Icon name="close" size={24} /></button>
+    <img src={item.image} alt={`Imagem ilustrativa: ${item.name}`} width="720" height="720" loading="lazy" />
+    <div class="dialog-copy"><span class="eyebrow text-cyan">{item.tag}</span><h2 id={`product-title-${item.id}`} class="display">{item.name}</h2><p>{item.detail}</p><a class="button button-cyan" href={whatsapp(item.message)} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" />Consultar no WhatsApp<Icon name="northeast" size={17} /></a><small>Imagem ilustrativa. Atendimento e pedido diretamente com a equipe.</small></div>
+  </dialog>)}
+</div>
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+  filters.forEach(button => button.addEventListener('click', () => {
+    filters.forEach(other => { other.classList.toggle('active', other === button); other.setAttribute('aria-pressed', String(other === button)); });
+    let count = 0;
+    cards.forEach(card => { const show = button.dataset.filter === 'all' || card.dataset.category === button.dataset.filter; card.hidden = !show; if (show) { count++; card.classList.add('is-visible'); } });
+    const status = document.querySelector('#filter-status'); if (status) status.textContent = `${count} ${count === 1 ? 'opção exibida' : 'opções exibidas'}.`;
+  }));
+  document.querySelectorAll<HTMLButtonElement>('[data-product]').forEach(button => button.addEventListener('click', () => {
+    const dialog = document.querySelector<HTMLDialogElement>(`#product-${button.dataset.product}`);
+    if (!dialog) return;
+    dialog.showModal(); document.body.style.overflow = 'hidden';
+    dialog.addEventListener('close', () => { document.body.style.overflow = ''; button.focus(); }, { once: true });
+  }));
+  document.querySelectorAll<HTMLDialogElement>('.product-dialog').forEach(dialog => {
+    dialog.querySelector('.dialog-close')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target !== dialog) return; const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); });
+  });
+</script>
+<style>
+  .burger-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .burger-card { min-width: 0; }
+  .burger-photo { display: block; position: relative; overflow: hidden; aspect-ratio: 1.13; background: #13171b; border-radius: 5px; }
+  .burger-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .burger-photo .hero-crop { object-position: 72% center; }
+  .burger-photo:hover img { transform: scale(1.045); }
+  .photo-tag { position: absolute; top: 17px; left: 17px; color: #e6ecee; background: #0b0d10ba; border: 1px solid #ffffff2a; padding: 7px 10px; border-radius: 3px; font-size: 8px; letter-spacing: .09em; display: flex; align-items: center; gap: 7px; }
+  .photo-tag span { width: 4px; height: 4px; background: var(--color-cyan); border-radius: 50%; }
+  .photo-arrow { position: absolute; bottom: 16px; right: 16px; width: 40px; height: 40px; display: grid; place-items: center; color: var(--color-ink); background: var(--color-cyan); border-radius: 50%; }
+  .burger-copy { padding-top: 21px; }
+  .burger-index { display: block; font-size: 9px; color: #9c9fa5; letter-spacing: .07em; text-transform: uppercase; }
+  .burger-copy h3 { font-family: var(--font-display); font-size: clamp(31px, 2.6vw, 39px); line-height: 1.05; text-transform: uppercase; font-weight: 700; margin: 12px 0; }
+  .burger-copy p { font-size: 11px; color: #a8abb0; line-height: 1.8; min-height: 42px; max-width: 310px; }
+  .burger-actions { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #ffffff26; margin-top: 19px; padding-top: 13px; }
+  .burger-actions a { display: grid; place-items: center; width: 36px; height: 36px; color: var(--color-cyan); }
+  .details-button { display: flex; align-items: center; gap: 17px; min-height: 40px; border: 0; background: transparent; color: var(--color-paper); font-size: 11px; padding: 0 12px 0 0; }
+  .details-button:hover { color: var(--color-cyan); }
+  .gallery-note { margin: 25px 0 0; color: #8f949b; font-size: 10px; line-height: 1.8; }
+  .menu-filters { display: flex; flex-wrap: wrap; gap: 11px; margin-bottom: 33px; }
+  .filter-button { display: flex; align-items: center; gap: 10px; border: 1px solid #3f444b; border-radius: 30px; background: transparent; color: #cccfd3; font-size: 11px; padding: 13px 20px; }
+  .filter-button.active { background: var(--color-cyan); color: var(--color-ink); border-color: var(--color-cyan); }
+  .product-dialog { position: fixed; inset: 0; margin: auto; padding: 0; border: 1px solid #3e434a; border-radius: 8px; background: #11151a; color: var(--color-paper); width: min(860px, calc(100% - 36px)); max-height: calc(100dvh - 40px); overflow: auto; }
+  .product-dialog[open] { display: grid; grid-template-columns: 1fr 1fr; }
+  .product-dialog::backdrop { background: #000b; backdrop-filter: blur(8px); }
+  .product-dialog > img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; object-position: 65% center; }
+  .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; display: grid; place-items: center; color: white; border: 1px solid #ffffff40; background: #090b0fcc; border-radius: 50%; z-index: 1; }
+  .dialog-copy { padding: 64px 32px 40px; }
+  .dialog-copy h2 { font-size: 50px; margin: 22px 0; }
+  .dialog-copy p { color: #b2b6bd; font-size: 13px; line-height: 1.9; margin-bottom: 26px; }
+  .dialog-copy small { display: block; color: #92979e; margin-top: 17px; line-height: 1.7; font-size: 9px; }
+  @media (max-width: 800px) { .burger-grid { gap: 18px; } .photo-tag { top: 10px; left: 10px; font-size: 7px; padding: 6px; } .burger-copy h3 { font-size: 29px; } }
+  @media (max-width: 600px) { .burger-grid { grid-template-columns: 1fr; gap: 36px; } .burger-photo { aspect-ratio: 1.2; } .burger-copy h3 { font-size: 37px; } .burger-copy p { min-height: 0; font-size: 12px; max-width: none; } .photo-tag { top: 16px; left: 16px; font-size: 8px; padding: 8px 10px; } .product-dialog[open] { display: block; } .product-dialog > img { height: 240px; min-height: 0; } .dialog-copy { padding: 29px 25px 32px; } .dialog-copy h2 { font-size: 45px; } .menu-filters { gap: 8px; } .filter-button { padding: 11px 14px; font-size: 10px; } }
+</style>
