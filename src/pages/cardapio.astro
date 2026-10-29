@@ -10,11 +10,13 @@ import { whatsapp } from '../data/site';
   <section class="menu-help container"><div><span class="eyebrow text-violet">DO SEU JEITO</span><h2 class="display">ALGUMA PREFERÊNCIA?<br />CONVERSA COM A GENTE.</h2></div><div><p>Quer saber os ingredientes, consultar uma adaptação ou confirmar as opções de hoje? Fale diretamente com a equipe antes de pedir.</p><a class="button button-cyan" href={whatsapp('Olá! Tenho uma preferência alimentar e gostaria de consultar os ingredientes e as opções disponíveis no O Burguer 013.')} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={20} />Tirar uma dúvida<Icon name="northeast" size={16} /></a></div></section>
 </Layout>
 <style>
-  .menu-hero { padding-top: 30px; padding-bottom: 50px; }
+  .menu-hero { padding-top: 30px; padding-bottom: 50px; position: relative; isolation: isolate; }
+  .menu-hero::before { content: ''; position: absolute; inset: 0 -30px; background: radial-gradient(ellipse at 88% 18%, #963edb1c, transparent 52%); pointer-events: none; z-index: -1; }
   .back { font-size: 10px; color: #9da2aa; display: inline-flex; gap: 12px; margin-bottom: 50px; }
   .back span { color: #656b72; }
   .menu-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 45px; }
   .menu-intro h1 { font-size: clamp(85px, 9vw, 128px); margin: 22px 0 0; }
+  .menu-intro h1 span { color: #bffbff; text-shadow: 0 0 9px #67e7ec60, 0 0 30px #67e7ec2b; }
   .menu-intro > div { padding-bottom: 6px; max-width: 370px; }
   .menu-intro p { color: #acb1b8; font-size: 13px; line-height: 1.9; margin-bottom: 24px; }
   .menu-content { padding-bottom: 70px; }

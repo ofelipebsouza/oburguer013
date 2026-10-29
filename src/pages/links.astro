@@ -14,22 +14,26 @@ const links = [
   <section class="link-page"><div class="link-image" aria-hidden="true"></div><div class="link-content"><a href="/" aria-label="O Burguer 013 — site"><Brand /></a><span class="link-city">EMBARÉ · SANTOS, SP</span><h1 class="display">ACENDEU<br /><span>A FOME?</span></h1><p>Burger artesanal, alma santista.<br />É só escolher por onde começar.</p><div class="bio-links">{links.map(link => <a href={link.href} class:list={['bio-link', { primary: link.primary }]} target={link.href.startsWith('https:') ? '_blank' : undefined} rel={link.href.startsWith('https:') ? 'noopener noreferrer' : undefined}><Icon name={link.icon} size={24} /><span><strong>{link.title}</strong><small>{link.subtitle}</small></span><Icon name="northeast" size={19} /></a>)}</div><a class="all-site" href="/">Visite o site completo<Icon name="arrow" size={17} /></a><div class="link-footer">O NOSSO CÓDIGO É 013.</div></div></section>
 </Layout>
 <style>
-  .link-page { position: relative; min-height: 100svh; padding: 45px 20px 35px; overflow: hidden; background: #0b0d10; }
+  .link-page { position: relative; min-height: 100svh; padding: 45px 20px 35px; overflow: hidden; background: radial-gradient(ellipse at 80% 7%, #8425a832, transparent 52%), radial-gradient(ellipse at 5% 85%, #107d8e26, transparent 55%), #0b0d10; isolation: isolate; }
+  .link-page::before { content: ''; position: absolute; top: 102px; left: 50%; width: 560px; height: 560px; border: 1px solid #bc91ff75; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 12px #b855e860, inset 0 0 20px #b855e820; pointer-events: none; }
+  .link-page::after { content: ''; position: absolute; top: 117px; left: 50%; width: 590px; height: 590px; border: 1px solid #67e7ec3d; border-radius: 50%; transform: translateX(-50%); pointer-events: none; z-index: -1; }
   .link-image { position: absolute; width: 600px; height: 650px; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(180deg, #0b0d1080, #0b0d10 85%), url('/images/hero-burger.webp') center/cover; opacity: .48; pointer-events: none; }
   .link-content { position: relative; max-width: 440px; margin: auto; text-align: center; }
   .link-content > a:first-child { display: inline-block; }
   .link-city { display: block; font-size: 8px; color: #a3abb3; letter-spacing: .2em; margin: 28px 0 21px; }
   h1 { font-size: 83px; margin: 0; }
-  h1 span { color: var(--color-cyan); }
+  h1 span { color: #d3ffff; -webkit-text-stroke: 1px var(--color-cyan); text-shadow: 0 0 9px #67e7ec85, 0 0 27px #67e7ec40; }
   p { color: #b6bdc5; font-size: 12px; line-height: 1.9; margin: 20px 0 28px; }
   .bio-links { display: flex; flex-direction: column; gap: 11px; }
-  .bio-link { display: flex; align-items: center; text-align: left; gap: 16px; border: 1px solid #3a4149; padding: 18px 20px; background: #151a20d9; border-radius: 6px; transition: transform .2s, background .2s; }
-  .bio-link:hover { transform: translateY(-2px); background: #202831; }
+  .bio-link { display: flex; align-items: center; text-align: left; gap: 16px; border: 1px solid #a97bf45c; padding: 18px 20px; background: #10131eea; border-radius: 6px; box-shadow: 0 0 16px #a97bf40b; transition: transform .2s, background .2s, border-color .2s, box-shadow .2s; }
+  .bio-link:hover { transform: translateY(-2px); background: #1e1c30; border-color: #c99aff; box-shadow: var(--neon-violet); }
+  .bio-link:not(.primary) > svg:first-child { color: #c29aff; filter: drop-shadow(0 0 6px #a97bf448); }
   .bio-link > span { flex: 1; }
   .bio-link strong { display: block; font-size: 12px; font-weight: 600; }
   .bio-link small { display: block; font-size: 9px; margin-top: 6px; color: #b4bbc4; }
-  .bio-link.primary { background: var(--color-cyan); color: var(--color-ink); border-color: var(--color-cyan); }
-  .bio-link.primary:hover { background: #a3f7f9; }
+  .bio-link.primary { background: var(--color-cyan); color: var(--color-ink); border-color: #caffff; box-shadow: 0 0 22px #67e7ec3b; }
+  .bio-link.primary:hover { background: #a3f7f9; box-shadow: 0 0 27px #67e7ec66; }
+  .bio-link.primary:focus-visible { outline-color: #e3ffff; }
   .bio-link.primary small { color: #28494d; }
   .all-site { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; color: #c7cdd3; margin-top: 28px; }
   .link-footer { font-size: 7px; letter-spacing: .22em; color: #929ca5; margin-top: 37px; }

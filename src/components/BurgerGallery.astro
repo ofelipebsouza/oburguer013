@@ -46,13 +46,16 @@ const { filters = false } = Astro.props;
 <style>
   .burger-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .burger-card { min-width: 0; }
-  .burger-photo { display: block; position: relative; overflow: hidden; aspect-ratio: 1.13; background: #13171b; border-radius: 5px; }
+  .burger-photo { display: block; position: relative; overflow: hidden; aspect-ratio: 1.13; background: #13171b; border: 1px solid #67e7ec80; border-radius: 5px; box-shadow: 0 0 0 3px #67e7ec06, 0 0 22px #67e7ec0d; transition: border-color .25s, box-shadow .25s; }
+  .burger-card:nth-child(2) .burger-photo { border-color: #b481f4a0; box-shadow: 0 0 0 3px #a97bf408, 0 0 22px #a97bf419; }
+  .burger-photo:hover, .burger-photo:focus-visible { border-color: #bdffff; box-shadow: 0 0 0 1px #67e7ec26, 0 0 24px #67e7ec28; }
+  .burger-card:nth-child(2) .burger-photo:hover, .burger-card:nth-child(2) .burger-photo:focus-visible { border-color: #dbbaff; box-shadow: 0 0 0 1px #a97bf426, 0 0 24px #a97bf438; }
   .burger-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
   .burger-photo .hero-crop { object-position: 72% center; }
   .burger-photo:hover img { transform: scale(1.045); }
   .photo-tag { position: absolute; top: 17px; left: 17px; color: #e6ecee; background: #0b0d10ba; border: 1px solid #ffffff2a; padding: 7px 10px; border-radius: 3px; font-size: 8px; letter-spacing: .09em; display: flex; align-items: center; gap: 7px; }
-  .photo-tag span { width: 4px; height: 4px; background: var(--color-cyan); border-radius: 50%; }
-  .photo-arrow { position: absolute; bottom: 16px; right: 16px; width: 40px; height: 40px; display: grid; place-items: center; color: var(--color-ink); background: var(--color-cyan); border-radius: 50%; }
+  .photo-tag span { width: 4px; height: 4px; background: var(--color-cyan); border-radius: 50%; box-shadow: 0 0 7px #67e7ec; }
+  .photo-arrow { position: absolute; bottom: 16px; right: 16px; width: 40px; height: 40px; display: grid; place-items: center; color: var(--color-ink); background: var(--color-cyan); border: 1px solid #bdffff; border-radius: 50%; box-shadow: 0 0 17px #67e7ec38; }
   .burger-copy { padding-top: 21px; }
   .burger-index { display: block; font-size: 9px; color: #9c9fa5; letter-spacing: .07em; text-transform: uppercase; }
   .burger-copy h3 { font-family: var(--font-display); font-size: clamp(31px, 2.6vw, 39px); line-height: 1.05; text-transform: uppercase; font-weight: 700; margin: 12px 0; }
@@ -64,8 +67,8 @@ const { filters = false } = Astro.props;
   .gallery-note { margin: 25px 0 0; color: #8f949b; font-size: 10px; line-height: 1.8; }
   .menu-filters { display: flex; flex-wrap: wrap; gap: 11px; margin-bottom: 33px; }
   .filter-button { display: flex; align-items: center; gap: 10px; border: 1px solid #3f444b; border-radius: 30px; background: transparent; color: #cccfd3; font-size: 11px; padding: 13px 20px; }
-  .filter-button.active { background: var(--color-cyan); color: var(--color-ink); border-color: var(--color-cyan); }
-  .product-dialog { position: fixed; inset: 0; margin: auto; padding: 0; border: 1px solid #3e434a; border-radius: 8px; background: #11151a; color: var(--color-paper); width: min(860px, calc(100% - 36px)); max-height: calc(100dvh - 40px); overflow: auto; }
+  .filter-button.active { background: var(--color-cyan); color: var(--color-ink); border-color: #b4ffff; box-shadow: 0 0 18px #67e7ec24; }
+  .product-dialog { position: fixed; inset: 0; margin: auto; padding: 0; border: 1px solid #a97bf48c; border-radius: 8px; background: #11151a; color: var(--color-paper); width: min(860px, calc(100% - 36px)); max-height: calc(100dvh - 40px); overflow: auto; box-shadow: 0 0 38px #a97bf426; }
   .product-dialog[open] { display: grid; grid-template-columns: 1fr 1fr; }
   .product-dialog::backdrop { background: #000b; backdrop-filter: blur(8px); }
   .product-dialog > img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; object-position: 65% center; }
