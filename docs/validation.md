@@ -10,3 +10,13 @@
 - Preços, horário atual, disponibilidade e link iFood não foram confirmados. Consultas direcionadas ao WhatsApp.
 
 A publicação em produção foi confirmada pela Vercel como READY, no projeto oburguer013 da equipe ofelipesouza. O código funcional inicial está no commit f21a80420d8e5e2804cbf37dc4f3e5e961658e8b.
+
+## Atualização neon - 29/10/2026
+
+- Astro check: 15 arquivos, zero erros, warnings e hints. Build estático concluído com as seis páginas.
+- Neon da home e letreiro de localização inspecionados visualmente na versão pública em desktop.
+- Ajustada a posição do tubo violeta para manter distância do link de rolagem do hero.
+- Biolink revisado; máscara radial acrescentada à foto decorativa para fundir suas bordas com o novo fundo.
+- Filtro vegetal no cardápio exibiu uma opção. Diálogo abriu com imagem, texto e WhatsApp corretos; Escape fechou e devolveu o foco ao botão de detalhes.
+- Captura da home atual em `docs/preview-neon-desktop.jpg`.
+- Elementos decorativos sem captura de eventos; efeitos estáticos. Regras de foco e redução de movimento preservadas. Responsividade revisada por código; não foi feita emulação móvel nesta etapa.

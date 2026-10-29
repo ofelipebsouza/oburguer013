@@ -9,7 +9,11 @@ Site de apresentação do O Burguer 013, no Embaré, Santos/SP. Astro + Tailwind
 - Link da bio: https://oburguer013.vercel.app/links/
 - Guia visual: https://oburguer013.vercel.app/identidade/
 
-![Home publicada do O Burguer 013](docs/preview-desktop.jpg)
+![Home publicada do O Burguer 013 com direção neon](docs/preview-neon-desktop.jpg)
+
+## Direção neon
+
+Letreiros contornados, tubos ciano/violeta e halos inspirados nas referências do Instagram. A atualização aparece na home, vitrine, localização, biolink e guia de identidade. Fotografias mantêm suas cores naturais e os efeitos são implementados em CSS/SVG, sem novas dependências. Detalhes em `docs/neon-direction.md`.
 
 ## Desenvolvimento
 

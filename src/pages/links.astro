@@ -17,7 +17,7 @@ const links = [
   .link-page { position: relative; min-height: 100svh; padding: 45px 20px 35px; overflow: hidden; background: radial-gradient(ellipse at 80% 7%, #8425a832, transparent 52%), radial-gradient(ellipse at 5% 85%, #107d8e26, transparent 55%), #0b0d10; isolation: isolate; }
   .link-page::before { content: ''; position: absolute; top: 102px; left: 50%; width: 560px; height: 560px; border: 1px solid #bc91ff75; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 12px #b855e860, inset 0 0 20px #b855e820; pointer-events: none; }
   .link-page::after { content: ''; position: absolute; top: 117px; left: 50%; width: 590px; height: 590px; border: 1px solid #67e7ec3d; border-radius: 50%; transform: translateX(-50%); pointer-events: none; z-index: -1; }
-  .link-image { position: absolute; width: 600px; height: 650px; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(180deg, #0b0d1080, #0b0d10 85%), url('/images/hero-burger.webp') center/cover; opacity: .48; pointer-events: none; }
+  .link-image { position: absolute; width: 600px; height: 650px; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(180deg, #0b0d1080, #0b0d10 85%), url('/images/hero-burger.webp') center/cover; opacity: .48; mask-image: radial-gradient(ellipse at 50% 16%, #000 12%, #0009 43%, transparent 74%); pointer-events: none; }
   .link-content { position: relative; max-width: 440px; margin: auto; text-align: center; }
   .link-content > a:first-child { display: inline-block; }
   .link-city { display: block; font-size: 8px; color: #a3abb3; letter-spacing: .2em; margin: 28px 0 21px; }

@@ -14,6 +14,6 @@ Os efeitos são feitos em CSS e SVG decorativo. As fotografias mantêm os arquiv
 
 ## Validação
 
-Astro check: 15 arquivos, zero erros, warnings e hints. A revisão de código conferiu o recorte dos elementos decorativos, pointer-events, aria-hidden, foco e as regras responsivas/reduced-motion existentes. O build final e a versão publicada são conferidos no processo de entrega.
+Astro check: 15 arquivos, zero erros, warnings e hints. Build estático com seis páginas concluído. A revisão de código conferiu o recorte dos elementos decorativos, pointer-events, aria-hidden, foco e as regras responsivas/reduced-motion existentes. A versão pública foi inspecionada no desktop, incluindo home, localização, biolink e filtro/diálogo de produto. Detalhes em `docs/validation.md`.
 
 Preços, horários, receitas, contatos e interações comerciais não fazem parte desta alteração visual.
